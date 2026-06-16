@@ -8,6 +8,10 @@ on:
     branches:
       - master
 
+# 添加权限配置，允许 Action 推送代码到 gh-pages 分支
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -28,7 +32,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      # 添加了 if 判断，只有当事件是 push 且分支是 master 时才执行部署
       - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
