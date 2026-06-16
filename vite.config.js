@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/vue-project/auth/',
+  base: '/vue-project/',
   plugins: [vue(), vueJsx(), vueDevTools()],
   resolve: {
     alias: {
